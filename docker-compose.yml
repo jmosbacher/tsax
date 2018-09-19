@@ -87,6 +87,8 @@ services:
       - 443:443
     networks:
       - default
+    restart: on-failure
+
 
 networks:
   default:

@@ -1,0 +1,21 @@
+# originally created by Alfio
+#Historian name,unit,description
+XE1T.CRY_PT101_PCHAMBER_AI.PI,bara,Detector pressure (cryostat) 
+#XE1T.CRY_TIC121_HEATER_AI.PI,percent,PTR Heater Power
+XE1T.CRY_R121_PMON_AI_IND_A_.PI,W,PTR Heater Power
+XE1T.PUR_FLOW_TOT.PI,slpm,Indication of total flow
+XE1T.GEN_CE912_SLM2_HMON.PI,mm,TPC Short Level Meter 2
+XE1T.CRY_TE101_TCRYOBOTT_AI.PI,C,Temperature Bottom TPC
+XE1T.CRY_PI110_PT113_PINS_AI.PI,mbar,Vacuum insulation pressure (cryogenic system)
+XE1T.GEN_CE901B_LLM2_HMON.PI,mm,TPC Long Level Meter 2
+# 2018/07/24 JN commented out following two variables because RGA is not working
+#XE1T.CRY_RGA101PWATER_AI.PI,mbar,Vacuum insulation water partial pressure
+#XE1T.CRY_RGA101PXE_AI.PI,mbar,Vacuum insulation xenon partial pressure
+# 2018/07/24 JN added two variables for MagPump
+XE1T.PUR_PPISTON.PI,bar,MagPump pressure
+XE1T.PUR_TE207_MPINSIDE_IND_A_.PI,C,temperature inside MagPump
+# 2018/08/01 JN added two variables for DST
+XE1T.DST_AI_PI424_AI_.PI,bara,column pressure
+XE1T.DST_AI_DP427_AI_.PI,bmar,Differential pressure for liquid level in Reboiler
+XE1T.DAQ.TPC.DATARATE,MB/s,TPC Data Flow
+XE1T.DAQ.MUV.DATARATE,kB/s,MuonVeto Data Flow

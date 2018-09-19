@@ -1,0 +1,88 @@
+version: '3.4'
+
+services:
+  
+  influxdb:
+    image: influxdb:latest
+    container_name: influxdb
+    ports:
+      - "8083:8083"
+      - "8086:8086"
+      - "8090:8090"
+    networks:
+      - default
+    env_file:
+      - 'env.influxdb'
+    volumes:
+      # Data persistency
+      # sudo mkdir -p /srv/docker/influxdb/data
+      - ./influxdb/data:/var/lib/influxdb
+
+  sc_reader:
+    build: ./sc_reader
+    command: python3 sc_reader.py
+    container_name: sc_reader
+    depends_on:
+      - influxdb
+    # env_file:
+    #  - ./sc_reader/sc.env
+    volumes:
+      - ./sc_reader/:/code
+      - ./sc_reader/scvariables.dat:/config/scvariables.dat
+    links:
+      - influxdb
+    #restart: unless-stopped
+    stdin_open: true
+    tty: true
+    environment:
+      - SCUSER
+      - SCPASS
+      - TZ='EST5EDT'
+
+  mdb_reader:
+    build: ./mdb_reader
+    command: python3 mdb_reader.py
+    container_name: mdb_reader
+    volumes:
+      - ./mdb_reader/:/code
+    links:
+      - influxdb
+    stdin_open: true
+    tty: true
+    environment:
+      - MONGOPASS
+
+  # telegraf:
+  #   image: telegraf:latest
+  #   container_name: telegraf
+  #   links:
+  #     - influxdb
+  #   volumes:
+  #     - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    restart: on-failure
+    ports:
+      - "3000:3000"
+    env_file:
+      - 'env.grafana'
+    links:
+      - influxdb
+    volumes:
+      # Data persistency
+      # sudo chown 472:472 ./grafana/data
+      - ./grafana/data:/var/lib/grafana
+    
+secrets:
+  sc_user:
+    file: ./sc_reader/sc_user.txt
+  sc_password:
+    file: ./sc_reader/sc_password.txt
+  vpn_credentials:
+    file: ./vpn/credentials.txt
+
+networks:
+  default:
+

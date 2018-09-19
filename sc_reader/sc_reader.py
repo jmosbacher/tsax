@@ -75,7 +75,7 @@ try:
         # mydata = mysc.GetSCLastValue()
         # data = [(d['tagname'],d['timestampseconds'],d['value']) for d in mydata]
         # log_values(data, db='pmt')
-        time.sleep(5)
+        time.sleep(10)
 
 except KeyboardInterrupt:
     pass

@@ -62,7 +62,7 @@ try:
             write_data("mv_event_rate",aggregate_cursor_mv)
             last_date = aggregate_cursor_mv[0]["srun"]
             #print(aggregate_cursor_mv[:2])
-        time.sleep(10)
+        time.sleep(60)
 except KeyboardInterrupt:
     pass
 except Exception as e:

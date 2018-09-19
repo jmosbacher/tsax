@@ -1,7 +1,17 @@
-version: '3.4'
+version: '3'
 
 services:
-  
+  nginx:
+    image: nginx:latest
+    container_name: production_nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - 80:80
+      - 443:443
+    networks:
+      - default
+
   influxdb:
     image: influxdb:latest
     container_name: influxdb
@@ -9,6 +19,7 @@ services:
       - "8083:8083"
       - "8086:8086"
       - "8090:8090"
+    
     networks:
       - default
     env_file:
@@ -74,14 +85,8 @@ services:
       # Data persistency
       # sudo chown 472:472 ./grafana/data
       - ./grafana/data:/var/lib/grafana
-    
-secrets:
-  sc_user:
-    file: ./sc_reader/sc_user.txt
-  sc_password:
-    file: ./sc_reader/sc_password.txt
-  vpn_credentials:
-    file: ./vpn/credentials.txt
+    networks:
+      - default
 
 networks:
   default:

@@ -17,7 +17,7 @@ services:
     volumes:
       # Data persistency
       # sudo mkdir -p /srv/docker/influxdb/data
-      - ./influxdb/data:/var/lib/influxdb
+      - ../influxdb/data:/var/lib/influxdb
 
   sc_reader:
     build: ./sc_reader
@@ -74,7 +74,7 @@ services:
     volumes:
       # Data persistency
       # sudo chown 472:472 ./grafana/data
-      - ./grafana/data:/var/lib/grafana
+      - ../grafana/data:/var/lib/grafana
     networks:
       - default
   nginx:

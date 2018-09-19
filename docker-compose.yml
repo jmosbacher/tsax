@@ -1,17 +1,7 @@
-version: '3'
+version: '2'
 
 services:
-  nginx:
-    image: nginx:latest
-    container_name: production_nginx
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
-    ports:
-      - 80:80
-      - 443:443
-    networks:
-      - default
-
+  
   influxdb:
     image: influxdb:latest
     container_name: influxdb
@@ -85,6 +75,18 @@ services:
       # Data persistency
       # sudo chown 472:472 ./grafana/data
       - ./grafana/data:/var/lib/grafana
+    networks:
+      - default
+  nginx:
+    image: nginx:latest
+    container_name: production_nginx
+    depends_on:
+      - grafana
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - 80:80
+      - 443:443
     networks:
       - default
 

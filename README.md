@@ -17,5 +17,6 @@
  - Go to http://localhost:3000
  
 ## Notes
- - You may need to run docker with sudo if you havent added your user to the docker group
+ - You need to have access to lngs through vpn or running from inside the network.
+ - You may need to run docker with sudo if you havent added your user to the docker group.
  

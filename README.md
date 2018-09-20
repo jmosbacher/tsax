@@ -7,8 +7,8 @@
 
 ## Whip up a server
  - git clone this repo
+ - create a grafana/data folder and make sure its owned by 472 (sudo chown 472:472 ./grafana/data)
  - cd to tsax
- - make sure the grafana/data folder is owned by 472 (sudo chown 472:472 ./grafana/data)
  - Set environment variabes with your credentials:
     - export SCUSER='slow control user'
     - export SCPASS='slow control pass'

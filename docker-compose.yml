@@ -38,6 +38,7 @@ services:
     environment:
       - SCUSER
       - SCPASS
+      - SCFREQ
       - TZ='EST5EDT'
 
   mdb_reader:

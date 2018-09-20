@@ -8,7 +8,8 @@ from influxdb import InfluxDBClient
 
 user = os.environ["SCUSER"]
 password = os.environ["SCPASS"]
-
+spm = os.environ.get("SCFREQ", 6)
+delay = 60/spm
 mysc = sc.xe1tscwebapi()
 
 mysc.AuthUser(user,password)
@@ -75,7 +76,9 @@ try:
         # mydata = mysc.GetSCLastValue()
         # data = [(d['tagname'],d['timestampseconds'],d['value']) for d in mydata]
         # log_values(data, db='pmt')
-        time.sleep(10)
+        time_left = time.time()-now
+        if time_left>0:
+            time.sleep(time_left)
 
 except KeyboardInterrupt:
     pass
